@@ -164,9 +164,9 @@ class DaggerKotlinIssueDetector : Detector(), SourceCodeScanner {
         }
         // Can't use hasAnnotation because it doesn't capture all annotations!
         val injectAnnotation =
-          node.annotations.find { it.qualifiedName == INJECT_ANNOTATION } ?: return
+          node.uAnnotations.find { it.qualifiedName == INJECT_ANNOTATION } ?: return
         // Look for qualifier annotations
-        node.annotations.forEach { annotation ->
+        node.uAnnotations.forEach { annotation ->
           if (annotation === injectAnnotation) {
             // Skip the inject annotation
             return@forEach
