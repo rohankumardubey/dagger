@@ -25,6 +25,7 @@ import static dagger.internal.codegen.javapoet.TypeNames.PRODUCER_MODULE;
 import static dagger.internal.codegen.langmodel.DaggerElements.getAnyAnnotation;
 import static dagger.internal.codegen.langmodel.DaggerTypes.isTypeOf;
 
+import com.google.auto.common.AnnotationMirrors;
 import com.google.auto.value.AutoValue;
 import com.google.auto.value.extension.memoized.Memoized;
 import com.google.common.collect.ImmutableList;
@@ -197,7 +198,7 @@ public abstract class ComponentAnnotation {
       return annotationBuilder.isProduction(true).isSubcomponent(true).build();
     }
     throw new IllegalArgumentException(
-        annotation
+        AnnotationMirrors.toString(annotation)
             + " must be a Component, Subcomponent, ProductionComponent, "
             + "or ProductionSubcomponent annotation");
   }

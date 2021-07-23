@@ -19,6 +19,7 @@ package dagger.internal.codegen.binding;
 import static com.google.common.base.Preconditions.checkState;
 import static dagger.internal.codegen.base.DiagnosticFormatting.stripCommonTypePrefixes;
 
+import com.google.auto.common.AnnotationMirrors;
 import com.google.auto.common.MoreElements;
 import com.google.auto.common.MoreTypes;
 import dagger.internal.codegen.base.Formatter;
@@ -135,6 +136,6 @@ public final class MethodSignatureFormatter extends Formatter<ExecutableElement>
   }
 
   private static String formatAnnotation(AnnotationMirror annotation) {
-    return stripCommonTypePrefixes(annotation.toString());
+    return stripCommonTypePrefixes(AnnotationMirrors.toString(annotation));
   }
 }

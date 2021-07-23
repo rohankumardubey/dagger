@@ -80,8 +80,9 @@ public class MethodSignatureFormatterTest {
     assertThat(formatted).contains("@Singleton");
     assertThat(formatted).doesNotContain("@javax.inject.Singleton"); // maybe more importantly
     assertThat(formatted)
-        .contains("@dagger.internal.codegen.MethodSignatureFormatterTest.OuterClass.Foo"
-            + "(bar=String.class)");
+        .contains(
+            "@dagger.internal.codegen.MethodSignatureFormatterTest.OuterClass.Foo"
+                + "(bar = String.class)");
     assertThat(formatted).contains(" String "); // return type compressed
     assertThat(formatted).contains("int, ImmutableList<Boolean>)"); // parameters compressed.
   }

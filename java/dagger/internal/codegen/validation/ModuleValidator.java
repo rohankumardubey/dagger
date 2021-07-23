@@ -42,6 +42,7 @@ import static javax.lang.model.element.Modifier.ABSTRACT;
 import static javax.lang.model.element.Modifier.STATIC;
 import static javax.lang.model.util.ElementFilter.methodsIn;
 
+import com.google.auto.common.AnnotationMirrors;
 import com.google.auto.common.MoreElements;
 import com.google.auto.common.MoreTypes;
 import com.google.auto.common.Visibility;
@@ -473,7 +474,8 @@ public final class ModuleValidator {
     if (isComponentAnnotation(annotation)) {
       return componentAnnotation(annotation).moduleValues();
     }
-    throw new IllegalArgumentException(String.format("unsupported annotation: %s", annotation));
+    throw new IllegalArgumentException(
+        String.format("unsupported annotation: %s", AnnotationMirrors.toString(annotation)));
   }
 
   private void validateBindingMethodOverrides(
