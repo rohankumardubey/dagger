@@ -56,7 +56,7 @@ jobs:
       - name: 'Cache Bazel files'
         uses: actions/cache@v2
         with:
-          path: ~/.cache/bazel
+          path: ~/.cache/bazel/**/external
           key: ${{ runner.os }}-bazel-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-bazel-
@@ -202,7 +202,7 @@ jobs:
       - name: 'Cache Bazel files'
         uses: actions/cache@v2
         with:
-          path: ~/.cache/bazel
+          path: ~/.cache/bazel/**/external
           key: ${{ runner.os }}-bazel-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-bazel-
@@ -294,7 +294,7 @@ jobs:
     - name: 'Cache Bazel files'
       uses: actions/cache@v2
       with:
-        path: ~/.cache/bazel
+        path: ~/.cache/bazel/**/external
         key: ${{ runner.os }}-bazel-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-bazel-
