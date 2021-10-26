@@ -26,7 +26,7 @@ buildscript {
 }
 
 plugins {
-  id 'org.jetbrains.kotlin.jvm' version '1.4.20'
+  id 'org.jetbrains.kotlin.jvm' version '1.5.31'
   id 'java-gradle-plugin'
   id 'maven-publish'
   id "com.github.johnrengelman.shadow" version "6.1.0"
@@ -67,7 +67,7 @@ dependencies {
   shadowed fileTree(dir: 'libs', include: '*.jar')
   implementation gradleApi()
   compileOnly "com.android.tools.build:gradle:$agp_version"
-  compileOnly 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20'
+  compileOnly 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
   implementation 'org.javassist:javassist:3.26.0-GA'
   implementation 'org.ow2.asm:asm:9.0'
   implementation "com.squareup:javapoet:1.13.0"
@@ -91,6 +91,11 @@ compileKotlin {
     jvmTarget = "1.8"
     allWarningsAsErrors = true
   }
+}
+
+java {
+  sourceCompatibility = "1.8"
+  targetCompatibility = "1.8"
 }
 
 // Imports a shared library from the main project. The library and its classes

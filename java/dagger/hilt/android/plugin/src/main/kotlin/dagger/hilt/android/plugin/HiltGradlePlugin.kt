@@ -33,6 +33,7 @@ import dagger.hilt.android.plugin.util.AndroidComponentsExtensionCompat.Companio
 import dagger.hilt.android.plugin.util.ComponentCompat
 import dagger.hilt.android.plugin.util.CopyTransform
 import dagger.hilt.android.plugin.util.SimpleAGPVersion
+import dagger.hilt.android.plugin.util.capitalize
 import dagger.hilt.android.plugin.util.getSdkPath
 import java.io.File
 import javax.inject.Inject
@@ -387,7 +388,7 @@ class HiltGradlePlugin @Inject constructor(
         compileTask.classpath = getInputClasspath(DAGGER_ARTIFACT_TYPE_VALUE)
         compileTask.options.bootstrapClasspath = mainBootstrapClasspath
       }
-      compileTask.destinationDir = componentClasses.singleFile
+      compileTask.destinationDirectory.set(componentClasses.singleFile)
       compileTask.options.apply {
         annotationProcessorPath = project.configurations.create(
           "hiltAnnotationProcessor${variant.name.capitalize()}"
@@ -395,8 +396,10 @@ class HiltGradlePlugin @Inject constructor(
           // TODO: Consider finding the hilt-compiler dep from the user config and using it here.
           project.dependencies.add(config.name, "com.google.dagger:hilt-compiler:$HILT_VERSION")
         }
-        annotationProcessorGeneratedSourcesDirectory = project.file(
-          project.buildDir.resolve("generated/hilt/component_sources/${variant.name}/")
+        generatedSourceOutputDirectory.set(
+          project.file(
+            project.buildDir.resolve("generated/hilt/component_sources/${variant.name}/")
+          )
         )
         if (
           JavaVersion.current().isJava8Compatible &&

@@ -17,6 +17,7 @@ package dagger.hilt.android.plugin.task
 
 import dagger.hilt.android.plugin.AndroidEntryPointClassTransformer
 import dagger.hilt.android.plugin.HiltExtension
+import dagger.hilt.android.plugin.util.capitalize
 import dagger.hilt.android.plugin.util.getCompileKotlin
 import dagger.hilt.android.plugin.util.isClassFile
 import dagger.hilt.android.plugin.util.isJarFile
